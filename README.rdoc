@@ -1,28 +1,25 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+pharmaTalk is a single page application (SPA) web app created as a final project while a student at General Assembly in the Web Development Immersive course.
 
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+
+* Backend Ruby on Rails
+
+* Frontend Angular JS
+
+* Postgres SQL Database
+
+* RSpec testing (TDD)
+
+* CircleCI
+
+* Git
+
+* Pivotal Tracker user stories
+
+* Twitter API
+
+* Heroku deployment
+
+
