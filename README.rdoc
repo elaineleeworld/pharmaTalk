@@ -2,6 +2,8 @@
 
 pharmaTalk is a single page application (SPA) web app created as a final project while a student at General Assembly in the Web Development Immersive course.
 
+Through research and extensive previous experience working in the pharmaceutical industry both in sales and management, I determined there is a need to establish an online and mobile place for pharma employees to go to for industry information and social connection.  There is also a need to create a simple, user-friendly interface where pharma employees will WANT to go to regularly.
+
 
 
 * Backend Ruby on Rails
