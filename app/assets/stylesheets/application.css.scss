@@ -16,3 +16,37 @@
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+/* Colors */
+
+/* position color of glyphicons and text in header */
+
+header {
+	.navbar-default {
+		background-color: #668B8B;
+	}
+	#pharmatalk {
+		color: yellow;
+		font-size: 2.0em;
+		position: absolute;
+		top: 6px;
+		left: 135px;
+	}
+	.glyphicon-edit {
+		font-size: 2.0em;
+		position: absolute;
+		right: 95px;
+		top: 15px;
+		cursor: pointer;
+		color: yellow;
+	}
+
+	.glyphicon-menu-hamburger {
+		font-size: 2.0em;
+		position: absolute;
+		right: 35px;
+		top: 15px;
+		cursor: pointer;
+		color: yellow;
+	}
+}
