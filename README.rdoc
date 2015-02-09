@@ -24,6 +24,4 @@ Through research and extensive previous experience working in the pharmaceutical
 
 * Heroku deployment
 
-https://circleci.com/gh/elaneylee>/pharmaTalk.svg?style=shield&circle-token=f3413a46d18cdfef9b03bbed7a1c1edfabd0db3a
-
-
+[![Circle CI](https://circleci.com/gh/elaneylee/pharmaTalk.svg?style=svg)](https://circleci.com/gh/elaneylee/pharmaTalk)
