@@ -14,8 +14,6 @@ Through research and extensive previous experience working in the pharmaceutical
 
 * RSpec testing (TDD)
 
-* CircleCI
-
 * Git
 
 * Pivotal Tracker user stories
@@ -24,4 +22,5 @@ Through research and extensive previous experience working in the pharmaceutical
 
 * Heroku deployment
 
+* CircleCI builds and tests
 {<img src="https://circleci.com/gh/elaneylee/pharmaTalk/tree/master.svg?style=svg&circle-token=f3413a46d18cdfef9b03bbed7a1c1edfabd0db3a" alt="Circle CI" />}[https://circleci.com/gh/elaneylee/pharmaTalk/tree/master]
