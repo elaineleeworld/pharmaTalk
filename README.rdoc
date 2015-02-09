@@ -1,4 +1,4 @@
-== README
+pharmaTalk  (readme)
 
 pharmaTalk is a single page application (SPA) web app created as a final project while a student at General Assembly in the Web Development Immersive course.
 
@@ -24,5 +24,6 @@ Through research and extensive previous experience working in the pharmaceutical
 
 * Heroku deployment
 
-![](http://circleci.com/gh/repoOwner/repoName.png?circle-token=f3413a46d18cdfef9b03bbed7a1c1edfabd0db3a
+https://circleci.com/gh/elaneylee>/pharmaTalk.svg?style=shield&circle-token=f3413a46d18cdfef9b03bbed7a1c1edfabd0db3a
+
 
