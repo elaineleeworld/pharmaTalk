@@ -1,0 +1,39 @@
+// IIFE
+
+(function(){
+
+	angular
+		.module('pharmatalkapp')
+		.controller('cookieController', cookieController);
+
+		cookieController.$inject = ['ipCookie'];
+
+
+	function cookieController(ipCookie){
+
+		var self = this;
+
+		// set ipCookie to expire after 1 day
+		var setCookie = function(id){
+			ipCookie('id', id, { expires: 30 });
+		}
+
+		var removeCookie = function(){
+			ipCookie.remove('id');
+		}
+
+		self.init = function(id){
+
+			// set cookie if undefined
+			if(typeof ipCookie() == 'undefined'){
+				setCookie(id);
+			}
+		}
+
+		self.remove = function(){
+			// remove that cookie
+			removeCookie();
+		}
+	}
+
+})();
