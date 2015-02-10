@@ -23,10 +23,10 @@
 
 header {
 	.navbar-default {
-		background-color: #668B8B;
+		background-color: lightblue;
 	}
 	#pharmatalk {
-		color: yellow;
+		color: white;
 		font-size: 2.0em;
 		position: absolute;
 		top: 6px;
@@ -38,7 +38,7 @@ header {
 		right: 95px;
 		top: 15px;
 		cursor: pointer;
-		color: yellow;
+		color: white;
 	}
 
 	.glyphicon-menu-hamburger {
@@ -47,10 +47,43 @@ header {
 		right: 35px;
 		top: 15px;
 		cursor: pointer;
-		color: yellow;
+		color: white;
 	}
 }
 
+h1, p {
+	text-align: center;
+	color: white;
+
+}
 body {
-	padding: 50px;
+	padding: 90px;
+	background-color: darkblue;
+}
+
+// Animations
+
+.push-menu
+{
+	@extend .max-height;
+	@extend .top-layer;
+	width: 0;
+	position: fixed;
+	top: 0;
+	right: 0;
+	background-color: #424242;
+	transition: width 0.5s ease;
+	button
+	{
+		width: 100%;
+		margin: 10px 0;
+		color: white;
+		background-color: #6E6E6E;
+		border: 0;
+		padding: 10px;
+		a
+		{
+			color: #fff;
+		}		
+	}
 }

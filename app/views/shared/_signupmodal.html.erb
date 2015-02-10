@@ -1,0 +1,56 @@
+<!-- Modal -->
+<div class="modal fade" id="signup" tabindex="-1" role="dialog" aria-labelledby="signupLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="signupLabel">Sign Up</h4>
+      </div>
+
+      
+        <%= form_for(:session, url: login_path) do |f| %>
+        
+        <div class="modal-body">
+
+        	<%= f.text_field :name, class: 'form-control', autofocus: 'true', placeholder: "Name" %>
+
+            <br />
+
+            <%= f.email_field :email, class: 'form-control', autofocus: 'true', placeholder: "Email" %>
+
+            <br />
+
+            <%= f.password_field :password, class: 'form-control', placeholder: 'Password' %>
+
+            <br />
+
+            <%= f.password_field :password, class: 'form-control', placeholder: 'Password Confirmation' %>
+
+            
+        </div>
+
+        <div class="modal-footer">
+          
+          <%= f.submit "Sign Up", class: 'btn btn-md btn-success' %>
+
+        </div>
+
+        <% end %>
+
+    
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  // When doc loads
+    $(function(){
+
+      // jQuery for modal
+      $("#signup").on('shown.bs.modal', function(){
+        $(this).find("[autofocus]:first").focus();
+      });
+
+
+    });
+</script>

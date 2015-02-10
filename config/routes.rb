@@ -1,37 +1,27 @@
 Rails.application.routes.draw do
 
-  get 'home/index'
-
-  get '/home' => 'home#index'
-
-  # login page
-  # root 'users/new'
-
-  get 'users/index'
-
-  get 'users/new'
-
-  get 'users/show'
-
-  get 'users/create'
-
-  get 'users/destroy'
-
-  # resource for sessions
-  get 'login' => 'sessions#new'
-  post 'login' => 'sessions#create'
-  delete 'logout' => 'sessions#destroy'
-
-  namespace :api, defaults: {format: :json} do
-    resources :posts
-    resources :comments
-  end
-
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
+
+  # homepage shows login or signup option
+  root :to => 'home#index'
+  # get 'users/index'
+  get 'users/new' 
+  get 'users/create'
+  # user sessions routes
+  get 'login' => 'sessions#new'
+  post 'login' => 'sessions#create'
+  delete 'logout' => 'sessions#destroy'
+
+  get 'signup' => 'users/new'
+
+  namespace :api, defaults: {format: :json} do
+    resources :posts
+    resources :comments
+  end
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

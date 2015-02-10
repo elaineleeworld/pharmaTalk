@@ -1,0 +1,17 @@
+<nav class="push-menu" ng-class="{true: 'pushed-menu'}[main.pushmenu]">
+	
+	
+	<div class="col-xs-12" ng-controller="cookieController as cookie">
+		<% if logged_in? %>
+				
+			<button><%= link_to "Edit", "/home/#/edit/#{session[:user_id]}" %></button>
+
+			<button ng-click="cookie.remove()"><%= link_to "Logout", logout_path, method: "delete" %> </button>
+		<% else %>
+
+			<button data-toggle="modal" data-target="#login">Log in</button>
+		<% end %>
+		
+	</div>
+	
+</nav>

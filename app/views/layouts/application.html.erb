@@ -20,9 +20,25 @@
 		  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 		  <link rel="icon" href="/favicon.ico" type="image/x-icon">
 		</head>
-		<body>
+
+		<!-- to activate the hamburger menu -->
+		<body ng-class="{true: 'body-pushed'}[main.pushmenu]">
 
 		<%= render 'shared/header' %>
+
+		<!-- if not logged in, display the login and signup buttons and show modal forms upon click -->
+		<% if !logged_in? %>
+  		<%= render 'shared/modal' %>
+  		<%= render 'shared/signupmodal' %>
+		<% end %>
+
+		<!--  activate hamburger menu upon click -->
+		<div id="view-container" class="container-fluid" ng-click="main.pushmenu = false">
+	
+		<% flash.each do |message_type, message| %>
+	  	<div class="text-center alert alert-<%= message_type %> error-message"><%= message %></div>
+		<% end %>
+
 
 		<%= yield %>
 
