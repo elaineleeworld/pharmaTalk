@@ -15,11 +15,21 @@ gem 'angular-rails-templates'
 gem 'angularjs-rails'
 gem 'bcrypt', '~> 3.1.7'
 gem 'bootstrap-sass', '~> 3.3.3'
+
+# gem to allow upvoting of posts
 gem 'acts_as_votable', '~> 0.10.0'
 gem 'sdoc', '~> 0.4.0',          group: :doc
 
 gem 'spring',        group: :development
 
+# gems for api and secret tokens
+gem 'twitter'
+gem 'figaro'
+
+# gems for uploading avatar images to Amazon S3 and then Heroku
+gem 'carrierwave'
+gem 'fog'
+gem 'mini_magick'
   
 group :test, :development do
   gem 'rspec-rails'
