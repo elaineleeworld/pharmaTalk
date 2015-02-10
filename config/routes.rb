@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
   # homepage shows login or signup option
   root :to => 'home#index'
-  # get 'users/index'
+ 
   get 'users/new' 
   get 'users/create'
   # user sessions routes
@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   post 'login' => 'sessions#create'
   delete 'logout' => 'sessions#destroy'
 
-  get 'signup' => 'users/new'
+
 
   namespace :api, defaults: {format: :json} do
     resources :posts

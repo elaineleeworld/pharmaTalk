@@ -1,13 +1,14 @@
 class UsersController < ApplicationController
 
-      def index
-        @users = User.all
-      end
+      # def index
+      #   @users = User.all
+      # end
 
       def new
         @user = User.new
-      #   if logged_in?
-      #     redirect_to home_path
+        if logged_in?
+          redirect_to user_path
+        end
       end
 
       def show
@@ -23,8 +24,8 @@ class UsersController < ApplicationController
         end
       end
 
-      def destroy
-      end
+      # def destroy
+      # end
 
       private
 
