@@ -1,12 +1,10 @@
 
-	angular
-		.module('ivpusic.cookie', ['ipCookie']);
-	angular
-		.module('ipCookie', ['ng']);
-
-	factory('ipCookie', ['$document',
-		function ($document){
-			'use strict';
+	angular.module('ivpusic.cookie', ['ipCookie']);
+angular.module('ipCookie', ['ng']).
+factory('ipCookie', ['$document',
+  function ($document) {
+    'use strict';
+      
 
 			function tryDecodeURIComponent(value) {
 				try {
@@ -89,7 +87,7 @@
 								cookies[name] = value;
 							}
 							if (key === name) {
-								returns cookies[name];
+								return cookies[name];
 							}
 							hasCookies = true;
 						}

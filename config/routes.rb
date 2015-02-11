@@ -10,7 +10,8 @@ Rails.application.routes.draw do
   root :to => 'home#index'
  
   get 'users/new' 
-  get 'users/create'
+  post 'users/new'
+  post 'users/create'
   # user sessions routes
   get 'login' => 'sessions#new'
   post 'login' => 'sessions#create'

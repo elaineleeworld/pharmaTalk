@@ -5,6 +5,10 @@ class ApplicationController < ActionController::Base
 
   include SessionsHelper
 
+  def default_serializer_options
+     { root: false }
+  end
+
   private
   	def logged_in_user
   		unless logged_in?

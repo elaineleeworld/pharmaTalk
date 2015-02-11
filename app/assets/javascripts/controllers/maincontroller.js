@@ -8,7 +8,7 @@
 		.controller('MainController', MainController);
 
 
-	MainController.$inject = ['CommentsFactory', 'PostsFactory', ipCookie];
+	MainController.$inject = ['CommentsFactory', 'PostsFactory', 'ipCookie'];
 
 	function MainController(CommentsFactory, PostsFactory, ipCookie){
 
@@ -21,7 +21,5 @@
 		self.comment = new CommentsFactory();
 		
 	}
-
-
 
 })();

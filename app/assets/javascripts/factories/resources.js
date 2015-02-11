@@ -25,7 +25,7 @@
 						isArray: true
 					},
 					get: {
-						method: 'GET'
+						method: 'GET',
 						params:{id: self.ipCookie}
 					},
 					save: {
@@ -33,7 +33,7 @@
 						params:{user_id: self.ipCookie}
 					},
 					update: {
-						method: 'PUT'
+						method: 'PUT',
 						params:{user_id: self.ipCookie}
 					}
 				});
