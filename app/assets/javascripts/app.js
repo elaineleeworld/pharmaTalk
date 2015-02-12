@@ -4,8 +4,8 @@
 	angular
 		.module('pharmatalkapp', [
 			'templates',
-			'ngResource',	
-			'ngRoute',								
+			'ngResource',
+			'ngRoute',									
 			'ipCookie'
 		]);
 

@@ -4,9 +4,11 @@
 <p> Get industry info. Stay connected. Be in the know.</p>
 <p> Read the most upvoted posts here! </p>
 
+<a id="btn-login" href="#" class="btn btn-success" data-target="#logout" class="glyphicon glyphicon-user">LogOut  </a>
+
 <div class="col-md-8 col-md-offset-2" id="no-one-posted">
     <div class="col-md-12 text-center well" ng-show="main.Post.posts.length !== 0">
-        <h4>Start <a data-toggle="modal" data-target="#post-link">posting industry news here!</a></h4>
+        <h4>Start <a data-toggle="modal" data-target="#post-link">posting pharma industry news here!</a></h4>
     </div>
 
     <div class="link-container" ng-repeat="post in main.Post.posts | filter:searchText" ng-show="main.Post.posts.length > 0">

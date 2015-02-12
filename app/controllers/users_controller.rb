@@ -14,7 +14,7 @@ class UsersController < ApplicationController
         if @user.save
           # session[:user_id] = @user.id
           log_in @user
-          redirect_to home_path, :notice => "Thanks for signing up for pharmaTalk!"
+          redirect_to home_path, :notice => "Thanks for signing up for pharmaTalk, #{current_user.name}!"
         else
           flash[:danger] = "Failed to sign up!"
           redirect_to root_path

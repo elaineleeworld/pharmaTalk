@@ -25,7 +25,6 @@
 			controllerAs: 'main'
 		})
 
-
 		.otherwise({
 			redirectTo: '/'
 		});
