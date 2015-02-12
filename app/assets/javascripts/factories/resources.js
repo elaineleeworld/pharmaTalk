@@ -2,7 +2,7 @@
 
 (function(){
     angular
-        .module('app')
+        .module('pharmatalkapp')
         .factory('Resources', Resources);
 
         Resources.$inject = ["$resource", 'ipCookie'];

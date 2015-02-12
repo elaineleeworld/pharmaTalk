@@ -1,4 +1,5 @@
-<header>
+<header ng-class="{true: 'body-pushed'}[main.pushmenu]">
+
 		<nav class="navbar navbar-default navbar-fixed-top ">
 		  <div class="container-fluid">
 		    <div class="navbar-header">
@@ -7,11 +8,16 @@
 		       <%= image_tag src="favicon2.jpg", width: '30px', height: '30px' %>
 
 		       <a id="pharmatalk" href="#">pharmaTalk</a>
+
+		       <% if logged_in? %>
+		       
 		       <a href="#" class="glyphicon glyphicon-edit" data-toggle="modal" data-target="#post-link"></a>
+
+		       <% end %>
 		       <a href="#" class="glyphicon glyphicon-menu-hamburger" ng-click="main.pushmenu = !main.pushmenu"></a>
 		       
 		       </a>
 		    </div>
 		  </div>
-		</nav>
+		</nav>	
 </header>

@@ -5,39 +5,57 @@
 
 (function(){
 
-	// Routing for my SPA app 
+	// Routing for my SPA app :-)
+
 	angular
 		.module('pharmatalkapp')
 		.config(config)
 		.run(run);
 
-	//  routeProvider sets your routing
-	//  locationProvider allows you to manipulate your url
-	function config($routeProvider, $locationProvider){
 
-		// Define the routes
-		$routeProvider
+		function config($routeProvider, $locationProvider){
 
-		.when('/', {
-			title: 'pharmaTalk',
-			templateUrl: 'index.html',
-			controller: "MainController",
-			controllerAs: 'main'
-		})
+			// Define the routes
+			$routeProvider
 
-		.otherwise({
-			redirectTo: '/'
-		});
+			.when('/', {
+				title: 'pharmaTalk',
+				templateUrl: 'index.html',
+				controller: 'MainController',
+				controllerAs: 'main'
+			})
 
-	};
+			// .when('/edit/:id', {
+			// 	title: "Edit user",
+			// 	templateUrl: "edit.html",
+			// 	controller: "MainController",
+			// 	controllerAs: "main"
+			// })
 
-	// Angular way to change your title
+			// .when('/about', {
+			// 	title: "About",
+			// 	templateUrl: "about.html",
+			// 	controller: "MainController",
+			// 	controllerAs: "check411"
 
-	function run($location, $rootScope){
-		var changeRoute = function(event, current, previous){
-			return $rootScope.title = current.$$route.title;
+			// })
+
+			.otherwise({
+				redirectTo: '/'
+			});
+
+		};
+
+		function run($location, $rootScope){
+
+			var changeRoute = function(event, current, previous){
+				return $rootScope.title = current.$$route.title;
+			}
+
+			$rootScope.$on('$routeChangeSuccess', changeRoute);
+
 		}
-		$rootScope.$on('$routeChangeSuccess', changeRoute);
 
-	}
+
 })();
+
