@@ -10,6 +10,7 @@
 
 	MainController.$inject = ['CommentsFactory', 'PostsFactory', 'ipCookie'];
 
+
 	function MainController(CommentsFactory, PostsFactory, ipCookie){
 
 		var self = this;

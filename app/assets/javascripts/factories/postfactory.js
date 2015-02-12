@@ -1,56 +1,59 @@
 // IIFE
+// Angular version of Rails CRUD for creating, reading, updating and
+// deleting posts
 
 (function(){
 
-	angular
-		.module('pharmatalkapp')
-		.factory('PostsFactory', PostsFactory);
+    angular
+        .module('pharmatalkapp')
+        .factory('PostsFactory', PostsFactory);
 
-	PostsFactory.$inject = ['Resources', '$http'];
+    PostsFactory.$inject = ['Resources', '$http'];
 
-	function PostsFactory(Resources, $http){
+    function PostsFactory(Resources, $http){
 
-		var Posts = function(){
-			var self = this;
+        var Posts = function(){
+            var self = this;
 
-			// use ngResource here for Posts
-			var PostResource = new Resources('posts');
+            // Use ngResource for Posts
+            var PostResource = new Resources('posts');
 
-			// retrieve all posts
-			self.posts = PostResource.query();
+            // Get all posts
+            self.posts = PostResource.query();
 
-			// create a post object
-			self.post = new PostResource();
+            // Create a post object
+            self.post = new PostResource();
 
-			self.create = function(post){
-s
-				PostResource.save(post, function(data, headers, status){
+            self.create = function(post){
 
-					self.posts.unshift(data);
+                PostResource.save(post, function(data, headers, status){    
+                    // take post from array                             
+                    self.posts.unshift(data);                           
+                    // Clear the modal form
+                    post.link = '';
+                                               
+                }).$promise.catch(function(response) {
+                    //this will be fired upon error
+                    if(response.status !== 201){
+                        self.postError = true;
+                    }
+                });
+            };
 
-					post.link = '';
 
-					$('#post-link').modal('toggle');
-				}).$promise.catch(function(response){
+            // Delete a post
+            self.destroy = function(post, index){
 
-					if(response.status !== 201){
-						self.postError = true;
-					}
-				});
-			};
+                var postObj = {id: post};
+                PostResource.delete(postObj);
 
-			// delete a post
-			self.destroy = function(post, index){
+                self.posts.splice(index, 1);
 
-				var postObj = {id: post};
-				PostResource.delete(postObj);
+            };      
+        };
 
-				self.posts.splice(index, 1);
-			};
+        return Posts;
 
-		};
-
-		return Posts;
-	}
+    }
 
 })();

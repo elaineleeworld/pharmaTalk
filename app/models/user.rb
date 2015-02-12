@@ -1,30 +1,38 @@
 class User < ActiveRecord::Base
+  # Downcase the email before saving it
 
-	# a user has many posts and has many comments
-	# if user is deleted, destroy all of that user's posts and comments as well
-	has_many :posts, dependent: :destroy
-	has_many :comments, dependent: :destroy
+  attr_accessor :remember_token
 
-	# downcase email before saving it
-	before_save :downcase_email
+  has_many :posts, dependent: :destroy
+  has_many :comments, dependent: :destroy
 
-	# check there is a name and max length of 50
-	validates :name, presence: true, length: {maximum: 50}
+  before_save :downcase_email
 
-	# check there is an email, it's format, uniqueness, and max length 250
-	validates :email, presence: true, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i }, uniqueness: {case_sensitive: false}, length: {maximum: 255}
+  # Checks name's presence, length: 50
+  validates :name, presence: true, length: {maximum: 50}
 
-    # check password is at least 6 characters long
-	validates :password, length: {minimum: 6}
+  # Checks email's presence, format, uniqueness, and length: 255
+  validates :email, presence: true, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i }, uniqueness: {case_sensitive: false}, length: {maximum: 255}
+ 
+  validates :password, length: {minimum: 6}
 
-	# takes care of password encryption and validation 
-	# no need for those methods
-	has_secure_password
+  # Enforces validation on the virtual password & password_confirmation attributes
+  has_secure_password
 
-	# method to downcase the email
-	private
-		def downcase_email
-			self.email = email.downcase
-		end
+  def User.digest(string)
+    cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
+                                                  BCrypt::Engine.cost
+    BCrypt::Password.create(string, cost: cost)
+  end
+
+  def User.new_token
+    SecureRandom.urlsafe_base64
+  end
+
+  private 
+
+    def downcase_email
+      self.email = email.downcase
+    end
 
 end

@@ -1,1 +1,103 @@
-<p>pharmaTalk is the number one site for pharmaeceutical industry news and for industry professionals to socialize</p>
+<!-- view seen by users logged in and/or signed up -->
+
+<h1>pharmaTalk</h1>
+<p> Get industry info. Stay connected. Be in the know.</p>
+<p> Read the most upvoted posts here! </p>
+
+<div class="col-md-8 col-md-offset-2" id="no-one-posted">
+    <div class="col-md-12 text-center well" ng-show="main.Post.posts.length !== 0">
+        <h4>Start <a data-toggle="modal" data-target="#post-link">posting industry news here!</a></h4>
+    </div>
+
+    <div class="link-container" ng-repeat="post in main.Post.posts | filter:searchText" ng-show="main.Post.posts.length > 0">
+
+        <div class="remove" ng-show="post.poster.id === main.id" ng-click="main.Post.destroy(post.id, $index)">
+            <span class="glyphicon glyphicon-remove"></span>
+        </div>
+        
+
+        <a class="links" href="{{post.link}}" class="post">{{post.title}}</a>
+        
+        <br />
+        <span class="time">submitted {{post.created_at}} by <a href="/#/profile/{{post.poster.id}}">{{post.poster.name}}</a></span>
+
+        <br />
+
+        <div class="comments" ng-repeat="comment in post.comments">     
+
+            
+        <div class="remove grey smaller" ng-show="post.poster.id === main.id" ng-click="main.Comment.destroy(comment.id, $index, $parent.$index)">
+                <span class="glyphicon glyphicon glyphicon-remove-circle"></span>
+            </div>
+
+            <a href="/#/profile/{{comment.commenter.id}}">{{comment.commenter.name}}</a><span class="time">{{comment.created_at}}</span>
+
+            <p>{{comment.body}}</p>
+            
+        </div>
+        <div class="comment-box">
+
+            <form name="commentBox" ng-submit="main.Comment.create(post.comment, post.id, $index)">
+                <textarea ng-model="post.comment" placeholder="Comment.." class="form-control"></textarea>
+                <input type="submit" value="Comment" class="pull-right submit-input" />
+            </form>
+
+        </div>
+    </div>
+</div>
+
+
+<div id="filter">
+    <div class="col-xs-2">
+        <span class="glyphicon glyphicon-search"></span>    
+    </div>
+    
+    <div class="col-xs-8">
+        <input type="text" class="form-control" ng-model="searchText" placeholder="Search pharmaTalk" />   
+    </div>
+    
+</div>
+
+
+<!-- Modal popup to allow a user to post a link -->
+
+<div class="modal fade" id="post-link" tabindex="-1" role="dialog" aria-labelledby="post-linkLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="post-linkLabel">Post a link</h4>
+
+      </div>
+
+      <form ng-submit="main.Post.create(main.Post.post)">
+        <div class="modal-body">
+          <input type="text" ng-model="main.Post.post.link" class="form-control" autofocus="true" placeholder="Enter link here..."  />
+          <br />          
+          <textarea ng-model="main.Post.post.title" class="form-control" style="min-height: 60px;" placeholder="Quick blurb about this link here..."></textarea>
+
+          <div ng-show="main.Post.postError === true" class="text-warning row text-center">Error!</div>
+
+      </div>
+      <div class="modal-footer">
+          <input type="submit" id="submit" class="btn btn-success" value="Submit" />
+        </div>    
+      </form>
+
+
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  // When doc loads
+    $(function(){
+
+      // jQuery for modal
+      $("#post-link").on('shown.bs.modal', function(){
+        $(this).find("[autofocus]:first").focus();
+      });
+
+
+    });
+</script>

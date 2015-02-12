@@ -2,51 +2,50 @@
 
 (function(){
 
-	angular
-		.module('pharmatalkapp')
-		.factory('CommentsFactory', CommentsFactory);
+  angular
+    .module("pharmatalkapp")
+    .factory("CommentsFactory", CommentsFactory);
 
-	CommentsFactory.$inject = ['Resources', '$http'];
+  CommentsFactory.$inject = ["PostsFactory", "Resources", "$http"];
 
-	function CommentsFactory(Resources, $http){
+  function CommentsFactory(PostsFactory, Resources, $http) {
 
-		var Comments = function(){
-			var self = this;
+    var Comments = function() {
+    
+      var self= this;
 
-			var CommentResource = new Resources('comments');
+      var CommentResource = new Resources("comments");
 
-			self.comments = CommmentResource.query();
+      self.comments = CommentResource.query();
 
-			self.comment = new CommentResource();
+      self.comment = new CommentResource();
 
-			self.create = function(comment){
+      self.create = function(comment) {
 
-				CommentResource.save(comment, function(data, headers, status){
-					self.comments.push(data);
+        CommentResource.save(comment, function(data, headers, status){
 
-					// clear the form
-					comment.body = '';
+          self.comments.unshift(data);
 
-					// close the modal comment form
-					$('#comment-link').modal('toggle');	
-				}).promise.catch(function(response){
-					if(response.status !== 201){
-						self.commentError = true;
-					}
-				});
-			};
+           comment.body = '';
+           comment.user_id = '';
+           comment.created_at = '';
 
-			// delete a comment
-			self.destroy = function(comment, index){
+           $("#comment-link").modal("toggle");
 
-				var commentObj = {id: comment};
-				CommentResource.delete(commentObj);
+        }).$promise.catch(function(response) {
+          if(response.status !== 201) {
+            self.commentError = true;
+          }
+        });
+      };
+      self.destroy = function(comment, index) {
+        var commentObj = {id: comment}
+        CommentResource.delete(commentObj);
 
-				self.comments.splice(index, 1);
-			};
-		};
-
-		return Comments;
-	}
+        self.comments.splice(index, 1);
+      };
+    };
+    return Comments
+  }
 
 })();
