@@ -1,10 +1,19 @@
-<nav class="push-menu" ng-class="{true: 'pushed-menu'}[main.pushmenu]">
+<!-- hamburger menu that shows up as a pop up modal are to Log Out -->
+
+
+
+<div class="modal fade" id="hamburger" tabindex="-1" role="dialog" aria-labelledby="signupLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="hamburger">Menu</h4>
+      </div>
 	
 	
 	<div class="col-xs-12" ng-controller="cookieController as cookie">
+
 		<% if logged_in? %>
-				
-			<button><%= link_to "Edit", "/home/#/edit/#{session[:user_id]}" %></button>
 
 			<button ng-click="cookie.remove()"><%= link_to "Logout", logout_path, method: "delete" %> </button>
 		<% else %>
@@ -15,3 +24,16 @@
 	</div>
 	
 </nav>
+
+<script type="text/javascript">
+  // When doc loads
+    $(function(){
+
+      // jQuery for modal
+      $("#hamburger").on('shown.bs.modal', function(){
+        $(this).find("[autofocus]:first").focus();
+      });
+
+
+    });
+</script>

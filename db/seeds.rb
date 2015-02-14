@@ -19,13 +19,13 @@ posts = Post.create(
   ]
 )
 
-# comments = Comment.create(
-#   [
-#     {
-#       body: "First comment test",
-#       user: user,
-#       post: Post.first
-#     },
+comments = Comment.create(
+  [
+    {
+      body: "First comment test",
+      user: user,
+      post: Post.first
+    },
    
-#   ]
-#   )
+  ]
+  )

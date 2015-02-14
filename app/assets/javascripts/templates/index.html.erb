@@ -4,92 +4,50 @@
 <p> Get industry info. Stay connected. Be in the know.</p>
 <p> Read the most upvoted posts here! </p>
 
-<a id="btn-login" href="#" class="btn btn-success" data-target="#logout" class="glyphicon glyphicon-user">LogOut  </a>
-
+<!-- link to add posts and/or read most recent posts -->
 
 <div class="col-md-8 col-md-offset-2" id="no-one-posted">
     <div class="col-md-12 text-center well" ng-show="main.Post.posts.length !== 0">
-        <h4><a data-toggle="modal" data-target="#post-link">Start posting pharma industry news here!</a></h4>
+        <h4><a data-toggle="modal" data-target="#post-link">Click here to add a link and read most upvoted articles!</a></h4>
     </div>
 
-    <div class="link-container" ng-repeat="post in main.Post.posts | filter:searchText" ng-show="main.Post.posts.length > 0">
 
-        <div class="remove" ng-show="post.poster.id === main.id" ng-click="main.Post.destroy(post.id, $index)">
-            <span class="glyphicon glyphicon-remove"></span>
-        </div>
-        
-
-        <a class="links" href="{{post.link}}" class="post">{{post.title}}</a>
-        
-        <br />
-        <span class="time">submitted {{post.created_at}} by <a href="/#/profile/{{post.poster.id}}">{{post.poster.name}}</a></span>
-
-        <br />
-
-        <div class="comments" ng-repeat="comment in post.comments">     
-
-            
-        <div class="remove grey smaller" ng-show="post.poster.id === main.id" ng-click="main.Comment.destroy(comment.id, $index, $parent.$index)">
-                <span class="glyphicon glyphicon glyphicon-remove-circle"></span>
-            </div>
-
-            <a href="/#/profile/{{comment.commenter.id}}">{{comment.commenter.name}}</a><span class="time">{{comment.created_at}}</span>
-
-            <p>{{comment.body}}</p>
-            
-        </div>
-        <div class="comment-box">
-
-            <form name="commentBox" ng-submit="main.Comment.create(post.comment, post.id, $index)">
-                <textarea ng-model="post.comment" placeholder="Comment.." class="form-control"></textarea>
-                <input type="submit" value="Comment" class="pull-right submit-input" />
-            </form>
-
-        </div>
-    </div>
-</div>
-
-
-<div id="filter">
-    <div class="col-xs-2">
-        <span class="glyphicon glyphicon-search"></span>    
-    </div>
-    
-    <div class="col-xs-8">
-        <input type="text" class="form-control" ng-model="searchText" placeholder="Search pharmaTalk" />   
-    </div>
-    
-</div>
-
-
-<!-- Modal popup to allow a user to post a link -->
-
+<!-- Modal to post a link and/or read most recent articles -->
 <div class="modal fade" id="post-link" tabindex="-1" role="dialog" aria-labelledby="post-linkLabel" aria-hidden="true">
   <div class="modal-dialog modal-sm">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="post-linkLabel">Post a link</h4>
-
       </div>
 
-      <form ng-submit="main.Post.create(main.Post.post)">
+<!-- form to add a link and submit button to post and save to database -->
+    <form ng-submit="main.Post.create(main.Post.post)">
         <div class="modal-body">
-          <input type="text" ng-model="main.Post.post.link" class="form-control" autofocus="true" placeholder="Share a link here on pharma news..."  />
+          <input type="text" ng-model="main.Post.post.link" class="form-control" autofocus="true" placeholder="Enter link.."  />
           <br />          
-          <!-- <textarea ng-model="main.Post.post.title" class="form-control" style="min-height: 60px;" placeholder="Quick blurb about this link here..."></textarea> -->
-          
-          <div ng-show="main.Post.postError === true" class="text-warning row text-center">Please enter a link in https:// format</div>
+
+          <div ng-show="main.Post.postError === true" class="text-warning row text-center">Please re-enter with https:// format!</div>
 
       </div>
+      
       <div class="modal-footer">
           <input type="submit" id="submit" class="btn btn-success" value="Submit" />
         </div>    
-      </form>
-    </div>
-  </div>
+    </form>
+
+<!-- show all posts  -->
+      <div ng-repeat="post in main.Post.posts">
+      <a href="{{ post.link }}">Recent Post Links</a>
+      </div>
+
+<!-- show when post created and by whom -->
+       <div>{{ post.created_at }} by {{ post.user.name }}"></div>
+
+    <div class="comments" ng-repeat="comment in post.comments">
 </div>
 
+<!-- JavaScript function to activate the Post Link modal -->
 <script type="text/javascript">
   // When doc loads
     $(function(){
@@ -102,3 +60,7 @@
 
     });
 </script>
+
+
+    
+   
