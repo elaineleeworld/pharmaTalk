@@ -1,18 +1,19 @@
 <!-- view seen by users logged in and/or signed up -->
 
 <h1>pharmaTalk</h1>
-<p> Get industry info. Stay connected. Be in the know.</p>
-<p> Read the most upvoted posts here! </p>
+<h5> Get industry info. Stay connected. Be in the know.</h5>
+<h5> Post topics and search Twitter </h5>
 
 <!-- link to add posts and/or read most recent posts -->
 
 <!-- button to add a post -->
-      <button><a data-toggle="modal" data-target="#post-link">Click here to add a post!</a></button>
+      <button class="btn"><a data-toggle="modal" data-target="#post-link">Click here to add a post!</a></button>
       <br>
-    
+      <br>
 <!-- show all posts  -->
       <div class="col-md-6 text-center well" ng-repeat="post in main.Post.posts"> 
-      <a href="{{ post.link }}">A new post</a>
+      <a href="{{ post.link }}">Click here for article</a>
+      <p>{{ post.title}}</p>
 <!-- show when post created and by whom -->
       <h6> submitted at {{ post.created_at }} by {{ post.user.name }}</h6></div>
       <!-- <div class="comments" ng-repeat="comment in post.comments">
@@ -23,12 +24,8 @@
 <!-- search Twitter for tweets relevant to a certain word you type into the search bar -->
 <form class="form-horizontal">
   <input type="text">
-  <button class="btn" ng-click=""<i class="icon-search">Display Recent Tweets with this Word</i></button>
+  <button class="btn" data-target="#tweet-search"><i class="icon-search">Display Recent Tweets with this Word</i></button>
 </form>
-
-    <h1>{{ tweet.tweet.text }} </h1>
-
-
 
 
 <!-- Modal to post a link  -->
@@ -37,14 +34,17 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="post-linkLabel">Post a link</h4>
+        <h4 class="modal-title" id="post-linkLabel">Post a Topic</h4>
       </div>
 
 <!-- form to add a link and submit button to post and save to database -->
     <form ng-submit="main.Post.create(main.Post.post)">
         <div class="modal-body">
-          <input type="text" ng-model="main.Post.post.link" class="form-control" autofocus="true" placeholder="Enter link.."  />
+          <textarea class="form-control" placeholder="Your title topic here"></textarea>
+          <br>
+          <input type="text" ng-model="main.Post.post.link" class="form-control" autofocus="true" placeholder="Enter related article link here .."  />
           <br />          
+          
 
           <div ng-show="main.Post.postError === true" class="text-warning row text-center">Please re-enter with https:// format!</div>
 
@@ -56,7 +56,7 @@
     </form>
 
 
-<!-- JavaScript function to activate the Post Link modal -->
+<!-- JavaScript function to activate the Post Link modal to focus on the input text -->
 <script type="text/javascript">
   // When doc loads
     $(function(){
@@ -69,6 +69,16 @@
 
     });
 </script>
+<!-- JavaScript to activate the Tweet Search button  -->
+<script type="text/javascript">
+//   //  jQuery for when button is clicked to start Tweet word search
+//     $(function(){
+//       $("#tweet-search").on('click'), function(){
+//          // <p>{{ tweet.tweet.text }}</p>
+//          <p>hello</p>
+//       });
+//     });
+// </script>
 
 
     

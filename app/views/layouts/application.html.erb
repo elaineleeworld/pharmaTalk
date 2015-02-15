@@ -19,9 +19,6 @@
 		</head>
 		
 
-		<!-- to activate the hamburger menu -->
-		<body ng-class="{true: 'body-pushed'}[main.pushmenu]">
-
 		<%= render 'shared/header' %>
 
 		<!-- if not logged in, display the login and signup buttons and show modal forms upon click -->
@@ -36,7 +33,7 @@
 		<% flash.each do |message_type, message| %>
 	  	<div class="text-center alert alert-<%= message_type %> error-message"><%= message %></div>
 		<% end %>
-		
+
 
 
 		<%= yield %>

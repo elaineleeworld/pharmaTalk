@@ -43,7 +43,7 @@ module API
     private
     
       def post_params
-        params.require(:post).permit(:link, :user_id)
+        params.require(:post).permit(:link, :title, :user_id)
       end
       
 

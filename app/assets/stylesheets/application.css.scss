@@ -51,10 +51,14 @@ header {
 	}
 }
 
-h1, p {
+h1, h5 {
 	text-align: center;
 	color: white;
 
+}
+
+p, h4 {
+	color: red;
 }
 h6 {
 	color: grey;
@@ -67,7 +71,12 @@ body {
 
 // Animations
 
-.push-menu
+.btn {
+	color: blue;
+	background-color: lightgreen;
+}
+
+/*.push-menu
 {
 	@extend .max-height;
 	@extend .top-layer;
@@ -90,4 +99,4 @@ body {
 			color: #fff;
 		}		
 	}
-}
+}*/

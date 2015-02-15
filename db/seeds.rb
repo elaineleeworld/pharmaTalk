@@ -6,12 +6,13 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-User.create(name: "Stanley", email: "stanley@mail.com", password: "password")
-user= User.find_by(email: "stanley@mail.com")
+User.create(name: "Elaine", email: "elaine@mail.com", password: "password")
+user= User.find_by(email: "elaine@mail.com")
 posts = Post.create(
   [
     {
-      link: "https://yahoo.com",
+      title: "Gilead and Hep C future outlook",
+      link: "https://gilead.com",
       user: user
       
     },
