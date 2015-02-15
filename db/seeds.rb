@@ -16,6 +16,19 @@ posts = Post.create(
       user: user
       
     },
+    {
+      title: "GSK layoffs",
+      link: "https://gsk.com",
+      user: user
+      
+    },
+
+    {
+      title: "Pharma sales rep future",
+      link: "https://reuters.com",
+      user: user
+      
+    },
  
   ]
 )
