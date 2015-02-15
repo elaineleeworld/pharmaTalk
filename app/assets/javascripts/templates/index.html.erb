@@ -2,7 +2,7 @@
 
 <h1>pharmaTalk</h1>
 <h5> Get industry info. Stay connected. Be in the know.</h5>
-<h5> Post topics and search Twitter </h5>
+<h5> Post topics. Read articles. Search Twitter. </h5>
 
 <!-- link to add posts and/or read most recent posts -->
 
@@ -11,7 +11,7 @@
       <br>
       <br>
 <!-- show all posts  -->
-      <div class="col-md-6 text-center well" ng-repeat="post in main.Post.posts"> 
+      <div id="box" class="col-md-6 text-center well" ng-repeat="post in main.Post.posts"> 
       <a href="{{ post.link }}">Click here for article</a>
       <p>{{ post.title}}</p>
 <!-- show when post created and by whom -->
@@ -23,8 +23,8 @@
 
 <!-- search Twitter for tweets relevant to a certain word you type into the search bar -->
 <form class="form-horizontal">
-  <input type="text">
-  <button class="btn" data-target="#tweet-search"><i class="icon-search">Display Recent Tweets with this Word</i></button>
+  <input id="tweet-box" type="text" placeholder="Enter word to search">
+  <button class="btn" data-target="#tweet-search" ><i class="icon-search">Most recent Tweets</i></button>
 </form>
 
 
@@ -46,7 +46,7 @@
           <br />          
           
 
-          <div ng-show="main.Post.postError === true" class="text-warning row text-center">Please re-enter with https:// format!</div>
+          <div ng-show="main.Post.postError === true" class="text-warning row text-center">Make sure link is in https:// format</div>
 
       </div>
       
