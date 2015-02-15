@@ -15,11 +15,11 @@
 
 		var self = this;
 
-		// create PostFactory as an object
+		// create PostFactory, CommentFactory and ipCookie id as objects
 		self.Post = new PostsFactory();
 		self.id = ipCookie('id');
-		// create CommentFactory as an object
 		self.comment = new CommentsFactory();
+		// self.tweet = new TweetsFactory();
 		
 	}
 
