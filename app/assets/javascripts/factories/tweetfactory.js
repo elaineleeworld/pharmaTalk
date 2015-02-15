@@ -11,7 +11,7 @@ TweetsFactory.$inject = ['Resources', '$http'];
 	
 		function getTweetResults(searchWord) {
 
-			// var API_KEY = 'Wfz570E9vjJXT5SGOM1RQ3Sgx';
+			
 			// var url = 'http://search.twitter.com/search.json' + 
 			// 			'?&rpp=100&include_entities=true&result_type=recent' + 
 			// 			'&callback=JSON_CALLBACK';
