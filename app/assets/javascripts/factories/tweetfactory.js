@@ -27,6 +27,13 @@ TweetsFactory.$inject = ['Resources', '$http'];
 		function doSearch(){
 			self.twitterResult = self.twitter.get({self.searchWord});
 		}
-
+		// in the view to activate button to search upon click:
+		// <input type="text ng-model="searchWord">
+		// <button ng-click="doSearch()"></button>
+		// <table>
+		// <tr ng-repeat="tweet in twitterResult.results">
+		// <td> {{tweet.text}}</td>
+		// </tr>
+		// </table>
 
 	}
