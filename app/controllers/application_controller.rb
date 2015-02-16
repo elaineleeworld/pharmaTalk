@@ -4,7 +4,8 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :null_session
 
   include SessionsHelper
-
+  include HomeHelper
+  
   def default_serializer_options
      { root: false }
   end

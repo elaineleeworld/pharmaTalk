@@ -56,9 +56,14 @@ h1, h5 {
 	color: white;
 
 }
+h3 {
+	color: lightgreen;
+	text-align: center;
+}
 
 p, h4 {
 	color: red;
+	text-align: center;
 }
 h6 {
 	color: grey;
@@ -72,10 +77,10 @@ body {
 #box {
 	margin: 20px;
 	padding: 0px;
-	width: 300px;
+	width: 250px;
 }
 
-#tweet-box {
+.input-box {
 	color: black;
 }
 
@@ -84,6 +89,10 @@ body {
 .btn {
 	color: blue;
 	background-color: lightgreen;
+}
+
+#weather {
+	color: white;
 }
 
 /*.push-menu

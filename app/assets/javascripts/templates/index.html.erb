@@ -2,7 +2,7 @@
 
 <h1>pharmaTalk</h1>
 <h5> Get industry info. Stay connected. Be in the know.</h5>
-<h5> Post topics. Read articles. Search Twitter. </h5>
+<h3> Post topics. Read articles. Search Twitter. </h3>
 
 <!-- link to add posts and/or read most recent posts -->
 
@@ -23,9 +23,47 @@
 
 <!-- search Twitter for tweets relevant to a certain word you type into the search bar -->
 <form class="form-horizontal">
-  <input id="tweet-box" type="text" placeholder="Enter word to search">
+  <input class="input-box" type="text" placeholder="Enter word to search">
   <button class="btn" data-target="#tweet-search" ><i class="icon-search">Most recent Tweets</i></button>
 </form>
+
+<br>
+
+<!-- <h3>Current Weather</h3> -->
+<div class="container-fluid">
+      <input type="text" name="city_name" placeholder="City" id="city" class="input-box"/>
+      <input type="text" name="state_name" placeholder="State" id="state" class="input-box"/>
+          
+      <button id="showweather" class="btn">Weather</button>
+          <div id="name"></div>
+          <div id="temp"></div>
+          <div id="description"></div>
+          <div id="image"></div>
+          <img src="<%= "http://openweathermap.org/img/w/#{@image}.png" %>">
+          
+          <!-- jQuery function for displaying weather -->
+        
+            <script type="text/javascript">
+            //   (function(){
+            // $("#showweather").on('click', 
+              (function($){
+                  var city = 'Los Angeles'
+                  var url = 'http://api.openweathermap.org/data/2.5/weather?q='
+                  $.getJSON(url+city, function(data){
+                    console.log(data);
+                    console.log(((data.main.temp - 273.15) * 1.8) +32);
+                    console.log(data.weather[0].description);
+                    console.log(data.weather[0].icon);
+                    $('#temp').html(((data.main.temp - 273.15) * 1.8) +32);
+                    $('#description').html(data.weather[0].description);
+                    $('#image').html(data.weather[0].icon);
+                  });
+                }).call(this, jQuery);
+             
+            </script>
+
+
+</div>
 
 
 <!-- Modal to post a link  -->
