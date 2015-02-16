@@ -24,13 +24,14 @@
 header {
 	.navbar-default {
 		background-color: grey;
+
 	}
 	#pharmatalk {
-		color: white;
-		font-size: 2.0em;
+		color: aquamarine;
+		font-size: 1.0em;
 		position: absolute;
 		top: 6px;
-		left: 135px;
+		left: 85px;
 	}
 	.glyphicon-edit {
 		font-size: 2.0em;
@@ -38,7 +39,7 @@ header {
 		right: 95px;
 		top: 15px;
 		cursor: pointer;
-		color: white;
+		color: aquamarine;
 	}
 
 	.glyphicon-menu-hamburger {
@@ -47,7 +48,7 @@ header {
 		right: 35px;
 		top: 15px;
 		cursor: pointer;
-		color: white;
+		color: aquamarine;
 	}
 }
 
@@ -60,6 +61,8 @@ h3 {
 	color: grey;
 	text-align: center;
 }
+
+
 
 p, h4 {
 	color: red;
