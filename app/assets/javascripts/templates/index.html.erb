@@ -4,7 +4,6 @@
 <h5> Get industry info. Stay connected. Be in the know.</h5>
 <h3> Post topics. Read articles. Search Twitter. </h3>
 
-<!-- link to add posts and/or read most recent posts -->
 
 <!-- button to add a post -->
       <button class="btn"><a data-toggle="modal" data-target="#post-link">Click here to add a post!</a></button>
@@ -12,7 +11,7 @@
       <br>
 <!-- show all posts  -->
       <div id="box" class="col-md-6 text-center well" ng-repeat="post in main.Post.posts"> 
-      <a href="{{ post.link }}">Click here for article</a>
+      <a href="{{ post.link }}">Click here for more info</a>
       <p>{{ post.title}}</p>
 <!-- show when post created and by whom -->
       <h6> submitted at {{ post.created_at }} by {{ post.user.name }}</h6></div>
@@ -21,102 +20,145 @@
       </div> -->
 
 
-<!-- search Twitter for tweets relevant to a certain word you type into the search bar -->
-<form class="form-horizontal">
-  <input class="input-box" type="text" placeholder="Enter word to search">
-  <button class="btn" data-target="#tweet-search" ><i class="icon-search">Most recent Tweets</i></button>
-</form>
+<!-- Twitter API search Twitter for tweets relevant to a certain word you type into the search bar -->
 
-<br>
+<div id="search_results"></div>
+        <form class="form-horizontal">
+            <input name="search_terms" autofocus="autofocus" class="input-box" ng-model="filterTweets" type="text" placeholder="Enter word to search">
+            <button class="btn" data-target="#tweet-search" ><i class="icon-search">Search recent Tweets</i></button>
+        </form>
+        <div id="tweet-container" ng-repeat="tweets in results | filter: filterTweets" >
+            <table>
+            <td>
+            </td>
+            </table>
+        </div>
 
-<!-- <h3>Current Weather</h3> -->
-<div class="container-fluid">
-      <input type="text" name="city_name" placeholder="City" id="city" class="input-box"/>
-      <input type="text" name="state_name" placeholder="State" id="state" class="input-box"/>
-          
-      <button id="showweather" class="btn">Weather</button>
-          <div id="name"></div>
-          <div id="temp"></div>
-          <div id="description"></div>
-          <div id="image"></div>
-          <img src="<%= "http://openweathermap.org/img/w/#{@image}.png" %>">
-          
-          <!-- jQuery function for displaying weather -->
-        
-            <script type="text/javascript">
-            //   (function(){
-            // $("#showweather").on('click', 
-              (function($){
-                  var city = 'Los Angeles'
-                  var url = 'http://api.openweathermap.org/data/2.5/weather?q='
-                  $.getJSON(url+city, function(data){
-                    console.log(data);
-                    console.log(((data.main.temp - 273.15) * 1.8) +32);
-                    console.log(data.weather[0].description);
-                    console.log(data.weather[0].icon);
-                    $('#temp').html(((data.main.temp - 273.15) * 1.8) +32);
-                    $('#description').html(data.weather[0].description);
-                    $('#image').html(data.weather[0].icon);
-                  });
-                }).call(this, jQuery);
-             
-            </script>
+        <br>
+
+        <!-- Start FreeStockCharts.com WatchList Widget -->
+        <h4>Market Watch</h4>
+        <p width="100%" align="center"><iframe width="200" height="120" scrolling="no" frameborder="0" style="border:none;" src="http://widgets.freestockcharts.com/WidgetServer/WatchListWidget.aspx?sym=DIA,NYSE,COMPQX,SPY,GILD,JNJ,PFE,CELG,AMGN,GENT,CBPO,ALXN,GRFS,LGND,MDVN,GSK,NVO,ABBV,ABT,BMY,MRK,BIIB&style=WLBlueStyle&w=160"></iframe></p> <!-- End FreeStockCharts.com WatchList Widget -->
+        <!-- JavaScript jQuery to return Twitter search JSON -->
+        <!-- consumer key:consumer secret encoded to Base64 per documentation -->
+        <!-- 'V2Z6NTcwRTl2akpYVDVTR09NMVJRM1NneDpVWnFKWGhvbGhxc0V3RTRKUW9WN1FKdll2TDBWZ2Y0eXJTazEyanhZczVja0R5Z2htZg==' -->
+                  <script type="text/javascript">
+                  $('#tweet-search').click(function(){
+                    $('#search-results').html('Searching Twitter now...');
+                    var search_Term = encodeURIComponent($('input[name=search_terms]').val());
+                    (function($){
+                        var search_Term = 'gilead'
+                        var url = 'https://api.twitter.com/1.1/search/tweets.json?q='
+                        $.getJSON(url+search_Term+'&result_type=recent&count=10', function(data){
+                          console.log(data);
+                        });
+                      }).call(this, jQuery);
+                    });
+                  </script>
 
 
-</div>
+<!-- Open Weather API -->
+        <div class="container-fluid">
+        <!--  <h4>Weather Watch</h4> -->
+              <input type="text" name="city_name" placeholder="City" id="city" class="input-box"/>
+              <input type="text" name="state_name" placeholder="State" id="state" class="input-box"/>
+                  
+              <button id="showweather" class="btn">Weather</button>
+                  <div id="name"></div>
+                  <div id="temp"></div>
+                  <div id="description"></div>
+                  <div id="image"></div>
+                  <img src="<%= "http://openweathermap.org/img/w/#{@image}.png" %>">
+                  
+                  
+                  <!-- jQuery function for displaying weather -->
+                  <!-- need help with entering in text field click button to display weather and image icon -->
+                
+                    <script type="text/javascript">
+                    //   (function(){
+                    // $("#showweather").on('click', 
+                      (function($){
+                          var city = 'Los Angeles'
+                          var url = 'http://api.openweathermap.org/data/2.5/weather?q='
+                          $.getJSON(url+city, function(data){
+                            console.log(data);
+                            console.log(((data.main.temp - 273.15) * 1.8) +32);
+                            console.log(data.weather[0].description);
+                            console.log(data.weather[0].icon);
+                            $('#name').html(data.name);
+                            $('#temp').html(((data.main.temp - 273.15) * 1.8) +32);
+                            $('#description').html(data.weather[0].description);
+                            $('#image').html(data.weather[0].icon);
+                             var $img = $("<img />").attr('src', data.weather[0].icon.image_url_760x100);
+                               $('#image').empty().append($img);
+                          });
+                        }).call(this, jQuery);
+
+                    
+                     
+                    </script>
+
+
+
+        </div>
+<!-- Twitter Widget -->
+     <!--    <a class="twitter-timeline" data-dnt="true" href="https://twitter.com/walking_fishy" data-widget-id="345198689897287680">Tweets by @walking_fishy</a> -->
+    <script>
+    // !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+    </script>
 
 
 <!-- Modal to post a link  -->
-<div class="modal fade" id="post-link" tabindex="-1" role="dialog" aria-labelledby="post-linkLabel" aria-hidden="true">
-  <div class="modal-dialog modal-sm">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="post-linkLabel">Post a Topic</h4>
-      </div>
+        <div class="modal fade" id="post-link" tabindex="-1" role="dialog" aria-labelledby="post-linkLabel" aria-hidden="true">
+          <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="post-linkLabel">Post a Topic</h4>
+              </div>
 
-<!-- form to add a link and submit button to post and save to database -->
-    <form ng-submit="main.Post.create(main.Post.post)">
-        <div class="modal-body">
-          <textarea class="form-control" placeholder="Your title topic here"></textarea>
-          <br>
-          <input type="text" ng-model="main.Post.post.link" class="form-control" autofocus="true" placeholder="Enter related article link here .."  />
-          <br />          
-          
+        <!-- form to add a link and submit button to post and save to database -->
+            <form ng-submit="main.Post.create(main.Post.post)">
+                <div class="modal-body">
+                  <textarea class="form-control" placeholder="Your title topic here"></textarea>
+                  <br>
+                  <input type="text" ng-model="main.Post.post.link" class="form-control" autofocus="true" placeholder="Enter related article link here .."  />
+                  <br />          
+                  
 
-          <div ng-show="main.Post.postError === true" class="text-warning row text-center">Make sure link is in https:// format</div>
+                  <div ng-show="main.Post.postError === true" class="text-warning row text-center">Make sure link is in https:// format</div>
 
-      </div>
-      
-      <div class="modal-footer">
-          <input type="submit" id="submit" class="btn btn-success" value="Submit" />
-        </div>    
-    </form>
+              </div>
+              
+              <div class="modal-footer">
+                  <input type="submit" id="submit" class="btn btn-success" value="Submit" />
+                </div>    
+            </form>
 
 
 <!-- JavaScript function to activate the Post Link modal to focus on the input text -->
-<script type="text/javascript">
-  // When doc loads
-    $(function(){
+          <script type="text/javascript">
+            // When doc loads
+              $(function(){
 
-      // jQuery for modal
-      $("#post-link").on('shown.bs.modal', function(){
-        $(this).find("[autofocus]:first").focus();
-      });
+                // jQuery for modal
+                $("#post-link").on('shown.bs.modal', function(){
+                  $(this).find("[autofocus]:first").focus();
+                });
 
 
-    });
-</script>
+              });
+          </script>
 <!-- JavaScript to activate the Tweet Search button  -->
-<script type="text/javascript">
-//   //  jQuery for when button is clicked to start Tweet word search
+    
+<!-- //     jQuery for when button is clicked to start Tweet word search
 //     $(function(){
 //       $("#tweet-search").on('click'), function(){
 //          // <p>{{ tweet.tweet.text }}</p>
 //          <p>hello</p>
 //       });
-//     });
-// </script>
+//     }); -->
+
 
 
     
