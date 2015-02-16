@@ -8,6 +8,8 @@
 
 User.create(name: "Elaine", email: "elaine@mail.com", password: "password")
 user= User.find_by(email: "elaine@mail.com")
+User.create(name: "Kiko", email: "kiko@mail.com", password: "password")
+user= User.find_by(email: "kiko@mail.com")
 posts = Post.create(
   [
     {

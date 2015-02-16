@@ -20,6 +20,7 @@ Rails.application.routes.draw do
 
   # api 
   namespace :api, defaults: {format: :json} do
+    get 'tweets' => 'tweets#index'
     resources :posts
     resources :comments
   end

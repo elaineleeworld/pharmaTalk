@@ -64,15 +64,15 @@
 <!-- Open Weather API -->
         <div class="container-fluid">
         <!--  <h4>Weather Watch</h4> -->
-              <input type="text" name="city_name" placeholder="City" id="city" class="input-box"/>
-              <input type="text" name="state_name" placeholder="State" id="state" class="input-box"/>
+              <input type="text" name="city_name" placeholder="Columbus, IN" id="city" class="input-box" value="Los Angeles" />
+              
                   
               <button id="showweather" class="btn">Weather</button>
                   <div id="name"></div>
                   <div id="temp"></div>
                   <div id="description"></div>
-                  <div id="image"></div>
-                  <img src="<%= "http://openweathermap.org/img/w/#{@image}.png" %>">
+                 
+                  <img src="" id="image">
                   
                   
                   <!-- jQuery function for displaying weather -->
@@ -80,23 +80,28 @@
                 
                     <script type="text/javascript">
                     //   (function(){
-                    // $("#showweather").on('click', 
-                      (function($){
-                          var city = 'Los Angeles'
+                    $("#showweather").on('click', 
+                      function(){
+                          var city = $('#city').val()
                           var url = 'http://api.openweathermap.org/data/2.5/weather?q='
+                          
                           $.getJSON(url+city, function(data){
+                            var degreesF = ((data.main.temp - 273.15) * 1.8) + 32;
+
                             console.log(data);
-                            console.log(((data.main.temp - 273.15) * 1.8) +32);
+                            console.log(degreesF);
                             console.log(data.weather[0].description);
                             console.log(data.weather[0].icon);
+                            
                             $('#name').html(data.name);
-                            $('#temp').html(((data.main.temp - 273.15) * 1.8) +32);
+                            $('#temp').html(Math.round(degreesF));
                             $('#description').html(data.weather[0].description);
-                            $('#image').html(data.weather[0].icon);
-                             var $img = $("<img />").attr('src', data.weather[0].icon.image_url_760x100);
-                               $('#image').empty().append($img);
+                            // $('#image').html(data.weather[0].icon);
+                            $("#image").attr('src', 'http://openweathermap.org/img/w/' + data.weather[0].icon + '.png');
+                               // $('#image').empty().append();
+                          })
                           });
-                        }).call(this, jQuery);
+                        // }).call(this, jQuery);
 
                     
                      
