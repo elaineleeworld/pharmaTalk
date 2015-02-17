@@ -20,50 +20,47 @@
       </div> -->
 
 
+  <!-- Stock WatchList Widget -->
+        <h4>Market Watch</h4>
+        <p width="100%" align="center"><iframe width="200" height="120" scrolling="no" frameborder="0" style="border:none;" src="http://widgets.freestockcharts.com/WidgetServer/WatchListWidget.aspx?sym=DIA,NYSE,COMPQX,SPY,GILD,JNJ,PFE,CELG,AMGN,GENT,CBPO,ALXN,GRFS,LGND,MDVN,GSK,NVO,ABBV,ABT,BMY,MRK,BIIB&style=WLBlueStyle&w=160"></iframe></p> 
+        <!-- End WatchList Widget -->
+
 <!-- Twitter API search Twitter for tweets relevant to a certain word you type into the search bar -->
 
-<div id="search_results"></div>
+<div class="container-fluid">
+              <input ng-model="main.searchWord" type="text" name="searchWord" placeholder="diabetes" id="searchWord" class="input-box" value="biotech" />
+              
+                  
+              <button ng-click="main.searchTweets()" id="searchTweets" class="btn">Return Recent Tweets</button>
+                  <div id="text" ng-repeat="tweet in main.tweets">
+                      {{ tweet.text }}
+                  </div>
+<!-- <div id="search_results"></div>
         <form class="form-horizontal">
-            <input name="search_terms" autofocus="autofocus" class="input-box" ng-model="filterTweets" type="text" placeholder="Enter word to search">
-            <button class="btn" data-target="#tweet-search" ><i class="icon-search">Search recent Tweets</i></button>
+            <input id="searchTerm" name="search_terms" autofocus="autofocus" class="input-box" ng-model="filterTweets" type="text" placeholder="Enter word to search">
+            <button class="btn" data-target="#searchTweets" ><i class="icon-search">Search recent Tweets</i></button>
         </form>
         <div id="tweet-container" ng-repeat="tweets in results | filter: filterTweets" >
             <table>
             <td>
             </td>
             </table>
-        </div>
+        </div> -->
         
-
         <br>
 
-        <!-- Stock WatchList Widget -->
-        <h4>Market Watch</h4>
-        <p width="100%" align="center"><iframe width="200" height="120" scrolling="no" frameborder="0" style="border:none;" src="http://widgets.freestockcharts.com/WidgetServer/WatchListWidget.aspx?sym=DIA,NYSE,COMPQX,SPY,GILD,JNJ,PFE,CELG,AMGN,GENT,CBPO,ALXN,GRFS,LGND,MDVN,GSK,NVO,ABBV,ABT,BMY,MRK,BIIB&style=WLBlueStyle&w=160"></iframe></p> 
-        <!-- End WatchList Widget -->
-
-
         <!-- JavaScript jQuery to return Twitter search JSON -->
-        <!-- consumer key:consumer secret encoded to Base64 per documentation -->
-        <!-- 'V2Z6NTcwRTl2akpYVDVTR09NMVJRM1NneDpVWnFKWGhvbGhxc0V3RTRKUW9WN1FKdll2TDBWZ2Y0eXJTazEyanhZczVja0R5Z2htZg==' -->
-                  <script type="text/javascript">
-                  $('#tweet-search').click(function(){
-                    $('#search-results').html('Searching Twitter now...');
-                    var search_Term = encodeURIComponent($('input[name=search_terms]').val());
-                    (function($){
-                        var search_Term = 'gilead'
-                        var url = 'https://api.twitter.com/1.1/search/tweets.json?q='
-                        $.getJSON(url+search_Term+'&result_type=recent&count=10', function(data){
-                          console.log(data);
-                        });
-                      }).call(this, jQuery);
-                    });
-                  </script>
+      
+              <script type="text/javascript">
 
+                 
+
+              </script>
+
+  
 
 <!-- Open Weather API -->
         <div class="container-fluid">
-        <!--  <h4>Weather Watch</h4> -->
               <input type="text" name="city_name" placeholder="Columbus, IN" id="city" class="input-box" value="Los Angeles" />
               
                   
@@ -74,12 +71,10 @@
                  
                   <img src="" id="image">
                   
-                  
                   <!-- jQuery function for displaying weather -->
-                  <!-- need help with entering in text field click button to display weather and image icon -->
+               
+              <script type="text/javascript">
                 
-                    <script type="text/javascript">
-                    //   (function(){
                     $("#showweather").on('click', 
                       function(){
                           var city = $('#city').val()
@@ -100,14 +95,10 @@
                             $("#image").attr('src', 'http://openweathermap.org/img/w/' + data.weather[0].icon + '.png');
                                // $('#image').empty().append();
                           })
-                          });
-                        // }).call(this, jQuery);
-
-                    
+                      });
+                        // }).call(this, jQuery);        
                      
-                    </script>
-
-
+              </script>
 
         </div>
 <!-- Twitter Widget -->
