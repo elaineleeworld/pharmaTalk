@@ -19,23 +19,20 @@
 		self.Post = new PostsFactory();
 		self.id = ipCookie('id');
 		self.comment = new CommentsFactory();
-		// self.tweet = new TweetsFactory();
 		self.searchTweets  = searchTweets;
 	
 
 	function searchTweets(){
-               
+          // var searchWord = 'gilead'
 	      var searchWord = encodeURIComponent(self.searchWord)
 	      var url = '/api/tweets?q='
-	      // $.getJSON(url+searchWord+'&result_type=popular&count=10', function(data){
-	      //     main.tweets = data;
-	      //     console.log(data[0].text);
-	      // $('#searchWord').html(data[0].text);
+	     
 	       $http 
 	          .get(url+searchWord+'&result_type=popular&count=10')
 	          .success(function(data, status, headers, config) {
 	            self.tweets = data;
-	          console.log(data[0].text);
+	          // console.log(data[0].text);
+	          // console.log(date[0].created_at);
 	       })
 	    };
 

@@ -12,7 +12,7 @@
 <!-- show all posts  -->
       <div id="box" class="col-md-6 text-center well" ng-repeat="post in main.Post.posts"> 
       <a href="{{ post.link }}">Click here for more info</a>
-      <p>{{ post.title}}</p>
+      <p>{{ post.title }}</p>
 <!-- show when post created and by whom -->
       <h6> submitted at {{ post.created_at }} by {{ post.user.name }}</h6></div>
       <!-- <div class="comments" ng-repeat="comment in post.comments">
@@ -31,10 +31,17 @@
               <input ng-model="main.searchWord" type="text" name="searchWord" placeholder="diabetes" id="searchWord" class="input-box" value="biotech" />
               
                   
-              <button ng-click="main.searchTweets()" id="searchTweets" class="btn">Return Recent Tweets</button>
+              <button ng-click="main.searchTweets()" id="searchTweets" class="btn">Return 10 Most Popular Tweets</button>
+               
+
                   <div id="text" ng-repeat="tweet in main.tweets">
-                      {{ tweet.text }}
+                       <table class="table table-striped table-bordered">
+                      <ul>{{ tweet.text }} {{ tweet.created_at }} {{ tweet.user.screen_name }}
+                      </ul>
+                      </table>
                   </div>
+               
+
 <!-- <div id="search_results"></div>
         <form class="form-horizontal">
             <input id="searchTerm" name="search_terms" autofocus="autofocus" class="input-box" ng-model="filterTweets" type="text" placeholder="Enter word to search">
@@ -49,11 +56,15 @@
         
         <br>
 
-        <!-- JavaScript jQuery to return Twitter search JSON -->
+        <!-- JavaScript jQuery to return Twitter search JSON converted to $http and -->
+        <!-- put in maincontroller -->
       
               <script type="text/javascript">
 
-                 
+               // $.getJSON(url+searchWord+'&result_type=popular&count=10', function(data){
+        //     main.tweets = data;
+        //     console.log(data[0].text);
+        // $('#searchWord').html(data[0].text);    
 
               </script>
 
@@ -101,12 +112,6 @@
               </script>
 
         </div>
-<!-- Twitter Widget -->
-     <!--    <a class="twitter-timeline" data-dnt="true" href="https://twitter.com/walking_fishy" data-widget-id="345198689897287680">Tweets by @walking_fishy</a> -->
-    <script>
-    // !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
-    </script>
-
 
 <!-- Modal to post a link  -->
         <div class="modal fade" id="post-link" tabindex="-1" role="dialog" aria-labelledby="post-linkLabel" aria-hidden="true">
