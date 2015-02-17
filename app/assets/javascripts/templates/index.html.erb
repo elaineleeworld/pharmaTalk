@@ -11,8 +11,10 @@
       <br>
 <!-- show all posts  -->
       <div id="box" class="col-md-6 text-center well" ng-repeat="post in main.Post.posts"> 
-      <a href="{{ post.link }}">Click here for more info</a>
       <p>{{ post.title }}</p>
+      <a href="{{ post.link }}">Click here to read the article</a>
+      
+
 <!-- show when post created and by whom -->
       <h6> submitted at {{ post.created_at }} by {{ post.user.name }}</h6></div>
       <!-- <div class="comments" ng-repeat="comment in post.comments">
@@ -125,7 +127,7 @@
         <!-- form to add a link and submit button to post and save to database -->
             <form ng-submit="main.Post.create(main.Post.post)">
                 <div class="modal-body">
-                  <textarea class="form-control" placeholder="Your title topic here"></textarea>
+                  <textarea ng-model="main.Post.post.title" class="form-control" placeholder="Your title topic here"></textarea>
                   <br>
                   <input type="text" ng-model="main.Post.post.link" class="form-control" autofocus="true" placeholder="Enter related article link here .."  />
                   <br />          
