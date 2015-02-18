@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
   include SessionsHelper
   include HomeHelper
   
+  # removes globally the root
   def default_serializer_options
      { root: false }
   end
