@@ -16,8 +16,14 @@
       
 
 <!-- show when post created and by whom -->
-      <h6> submitted at {{ post.created_at }} by {{ post.poster.name }}</h6>
-     </div>
+      <h6> submitted at {{ post.created_at }} by {{ post.poster}}</h6>
+     
+      <button class="btn"><a data-toggle="modal" data-target="#comment-body">Read Comments</a></button>
+
+      <button class="btn"><a data-toggle="modal" data-target="#comment-body">Add comment</a></button>
+     
+
+      </div>
 
   <!-- Stock WatchList Widget -->
         <h4>Market Watch</h4>
@@ -153,15 +159,22 @@
 
               });
           </script>
-<!-- JavaScript to activate the Tweet Search button  -->
-    
-<!-- //     jQuery for when button is clicked to start Tweet word search
-//     $(function(){
-//       $("#tweet-search").on('click'), function(){
-//          // <p>{{ tweet.tweet.text }}</p>
-//          <p>hello</p>
-//       });
-//     }); -->
+
+          <!-- Javascript to activate the comment modal -->
+ <script type="text/javascript">
+            // When doc loads
+              $(function(){
+
+                // jQuery for modal
+                $("#comment-body").on('shown.bs.modal', function(){
+                  $(this).find("[autofocus]:first").focus();
+
+                });
+
+
+              });
+          </script>
+
 
 
 

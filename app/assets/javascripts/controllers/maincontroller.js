@@ -24,8 +24,8 @@
 
 	function searchTweets(){
           // var searchWord = 'gilead'
-	      var searchWord = encodeURIComponent(self.searchWord)
-	      var url = '/api/tweets?q='
+	      var searchWord = encodeURIComponent(self.searchWord);
+	      var url = '/api/tweets?q=';
 	     
 	       $http 
 	          .get(url+searchWord+'&result_type=popular&count=10')
