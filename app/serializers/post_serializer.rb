@@ -1,5 +1,5 @@
 class PostSerializer < ActiveModel::Serializer
-  attributes :id, :title, :link, :created_at, :poster
+  attributes :id, :title, :link, :created_at, :poster, :dateTimeFormat
   has_many :comments
   # include comments data at the root level and the comments ids
   # keeps the comments data separate and used when needed
@@ -10,4 +10,8 @@ class PostSerializer < ActiveModel::Serializer
   def poster
     object.user.name
   end 
+
+  def dateTimeFormat
+    self.created_at.strftime('%B %d, %Y %H:%M:%S %p')
+  end
 end

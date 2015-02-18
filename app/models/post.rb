@@ -13,5 +13,9 @@ class Post < ActiveRecord::Base
   default_scope->{order(created_at: :desc)}
 
  # validate link entered has http://www.example.com format
-  # validates :link, presence: true, format: {with: /https?:\/\/[\S]+/}
+  validates :link, presence: true, format: {with: /https?:\/\/[\S]+/}
+
+  def dateTimeFormat
+  	self.created_at.strftime('%B %d, %Y %H:%M:%S %p')
+  end
 end
