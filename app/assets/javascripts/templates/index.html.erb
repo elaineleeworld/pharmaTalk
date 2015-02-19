@@ -20,25 +20,31 @@
       <!-- <a href="">View all comments</a> -->
 
 <!-- button to display all comments in a modal for that particular post -->
-  <!--  <div class="comments" ng-repeat="comment in post.comments">   -->
-            
+          <button class="btn"><a data-toggle="modal" data-target="#{{post.id}}" >View all Comments</a></button>
+  <!--  <div class="comments" ng-repeat="comment in post.comments">  --> 
+          <div id="{{post.id}}" class= "modal fade" >
+                  <div class="modal-dialog">
+                      <div class = "modal-content">
+                          <div class = "modal-header">
+                              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;
+                              </button>
+                              <h5>Comments</h5>
+                          </div> 
+                          <div class = "modal-body" > 
+                            <div ng-repeat="comment in post.comments">
+                              <p>{{comment.body}} by {{comment.commenter}} {{comment.dateTimeFormat}}</p> 
+                              </div>
+                          </div>
+                  </div>
+              </div>
+          </div>
 
-<!-- remove comment -->
-     <!--  <div class="remove grey smaller" ng-show="post.poster.id === main.id" ng-click="main.Comment.destroy(comment.id, $index, $parent.$index)">
-            <span class="glyphicon glyphicon glyphicon-remove-circle"></span>
-      </div> -->
-
-<!-- comment created by and at -->
-         <!--  <a href="/#/profile/{{comment.commenter.id}}">{{comment.commenter.name}}</a><span class="time">{{comment.created_at}}</span> -->
-
-<!-- comment body -->
-          <!-- <p>{{comment.body}}</p>
           
-    </div>  -->  
+   <!--  </div>   --> 
 <!-- comment box -->
         <div class="comment-box">
 
-            <form name="commentBox" ng-submit="main.addComment(post.comment, post.id)">
+            <form name="commentBox" ng-submit="main.addComment(post.comment, post.id, $index)">
               <textarea ng-model="post.comment" placeholder="Comment.." class="form-control"></textarea>
               <input type="submit" value="Comment" class="pull-right submit-input" />
             </form>
@@ -67,35 +73,7 @@
                       </ul>
                       </table>
                   </div>
-               
-
-<!-- <div id="search_results"></div>
-        <form class="form-horizontal">
-            <input id="searchTerm" name="search_terms" autofocus="autofocus" class="input-box" ng-model="filterTweets" type="text" placeholder="Enter word to search">
-            <button class="btn" data-target="#searchTweets" ><i class="icon-search">Search recent Tweets</i></button>
-        </form>
-        <div id="tweet-container" ng-repeat="tweets in results | filter: filterTweets" >
-            <table>
-            <td>
-            </td>
-            </table>
-        </div> -->
-        
-        <br>
-
-        <!-- JavaScript jQuery to return Twitter search JSON converted to $http and -->
-        <!-- put in maincontroller -->
       
-              <script type="text/javascript">
-
-               // $.getJSON(url+searchWord+'&result_type=popular&count=10', function(data){
-        //     main.tweets = data;
-        //     console.log(data[0].text);
-        // $('#searchWord').html(data[0].text);    
-
-              </script>
-
-  
 
 <!-- Open Weather API -->
         <div class="container-fluid">
@@ -140,33 +118,61 @@
 
         </div>
 
+
 <!-- Modal to post a link  -->
-        <div class="modal fade" id="post-link" tabindex="-1" role="dialog" aria-labelledby="post-linkLabel" aria-hidden="true">
-          <div class="modal-dialog modal-sm">
-            <div class="modal-content">
-              <div class="modal-header">
+    <div class="modal fade" id="post-link" tabindex="-1" role="dialog" aria-labelledby="post-linkLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+          <div class="modal-content">
+            <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" id="post-linkLabel">Post a Topic</h4>
-              </div>
+            </div>
+     
 
         <!-- form to add a link and submit button to post and save to database -->
-            <form ng-submit="main.Post.create(main.Post.post)">
-                <div class="modal-body">
+  <form ng-submit="main.Post.create(main.Post.post)" onsubmit="$('#post-link').modal('hide');">
+    <div class="modal-body">
                   <textarea ng-model="main.Post.post.title" class="form-control" placeholder="Your title topic here"></textarea>
                   <br>
+
                   <input type="text" ng-model="main.Post.post.link" class="form-control" autofocus="true" placeholder="Enter related article link here .."  />
-                  <br />    
+                  <br />  
+
                   <div ng-show="main.Post.postError === true" class="text-warning row text-center">Please enter a link to a relevant article!</div>
 
-                 <!--  <div class="modal-footer"> -->
-                  <div class="modal-footer">
-                  <input type="submit" id="submit" class="btn btn-success" value="Post!"/>
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                  </div>  
+       <!--  <div class="modal-footer"> -->
+        <div class="modal-footer">
+        <input type="submit" id="submit" class="btn btn-success" value="Post!"/>
+        <button type="button" class="btn btn-default" data-dismiss="modal" >Close</button>
+        </div>  
    
        
-                </div>   
-            </form>   
+    </div>   
+  </form>  
+
+     </div>
+  </div>
+</div>
+  <!-- Modal for comments add a angular bound variable  -->
+
+  <!-- Modal -->
+<div id="secondModal" class= "modal fade" >
+        <div class="modal-dialog">
+            <div class = "modal-content">
+                <div class = "modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;
+                    </button>
+                    <h5>Comments</h5>
+                </div> 
+                <div class = "modal-body" > 
+                  <div ng-repeat="comment in main.comment.comments">
+                    <p>{{comment.body}} by {{comment.commenter}} {{comment.dateTimeFormat}}</p> 
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>
+
                   
 <!-- JavaScript function to activate the Post Link modal to focus on the input text -->
           <script type="text/javascript">
@@ -181,6 +187,23 @@
 
               });
           </script>
+
+<!-- JavaScript function to click button to display all comments for that one post -->
+           <script type="text/javascript">
+            // When doc loads
+              $(function(){
+
+                // jQuery for modal
+                $("#secondModal").on('shown.bs.modal', function(){
+                  console.log("testing modal");
+                  $(this).find("[autofocus]:first").focus();
+                  
+                });
+
+              });
+          </script>
+
+
 
         
 

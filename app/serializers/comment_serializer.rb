@@ -1,5 +1,5 @@
 class CommentSerializer < ActiveModel::Serializer
-  attributes :id, :body, :commenter, :created_at, 
+  attributes :id, :body, :commenter, :created_at, :dateTimeFormat
 
   # belongs_to :post
 

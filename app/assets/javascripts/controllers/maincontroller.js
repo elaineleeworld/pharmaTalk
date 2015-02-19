@@ -22,11 +22,11 @@
 		self.searchTweets  = searchTweets;
 		self.addComment = addComment;
 
-
-		function addComment(content, postId){
+		function addComment(content, postId, $index){
 			$http
 			  .post('/api/comments', {body: content, post_id: postId, user_id: self.id})
 			  .success(function(response){
+			  	self.Post.posts[$index].comments.push(response);
 			  	console.log(response);
 			  })
 		}
