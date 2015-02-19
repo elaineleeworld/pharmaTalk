@@ -1,11 +1,17 @@
 <!-- this is the SPA app  -->
 <div ng-controller="cookieController as cookie">
 
+<!--   -->
+<%= render 'shared/header' %>
+
     <% if logged_in? %>
     <!-- ngview corresponds to the url in the routing.js -->
         <div ng-view ng-init="cookie.init(<%= current_user.id %>)">
 
- 	
+ 	<!-- ng view is angular's version of view if all pages displaying  -->
+ 	<!-- is angular then it will display the header too -->
+ 	<!-- template index.html.erb will display in this div  -->
+ 	<!-- add any additional pages will render here -->
         </div>
 
     <% end %>

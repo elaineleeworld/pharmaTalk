@@ -12,14 +12,14 @@
 
 		       <% if logged_in? %>
 
-	
+				<button ng-click="cookie.remove()"><%= link_to "Logout", logout_path, method: "delete" %> </button>
 				<!-- display post link option -->
 
-		       <a href="#" class="glyphicon glyphicon-edit" data-toggle="modal" data-target="#post-link"></a>
+		      <!--  <a href="#" class="glyphicon glyphicon-edit" data-toggle="modal" data-target="#post-link"></a> -->
 
 		       <!-- display hamburger menu -->
 		       <% end %>
-		       <a href="#" class="glyphicon glyphicon-menu-hamburger" ng-click="main.pushmenu = !main.pushmenu"></a>
+		       <!-- <a href="#" class="glyphicon glyphicon-menu-hamburger" ng-click="main.pushmenu = !main.pushmenu"></a> -->
 		       
 		       </a>
 		    </div>

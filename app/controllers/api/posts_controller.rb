@@ -16,8 +16,11 @@ module API
       # post = current_user.posts.build(post_params)  
       post = Post.new(post_params)
       user = User.find(params[:user_id])
-      post.user = user   
-
+      post.user = user  
+      # post = Post.find(params[:post_id]) 
+      # @comment = post.comments.build(params[:comment])
+      # @comment.user = current_user
+      # @comment.save
       if post.save
         render json: post, status: 201
       else

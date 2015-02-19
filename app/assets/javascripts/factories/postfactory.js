@@ -31,6 +31,7 @@
                     self.posts.unshift(data);                           
                     // Clear the modal form
                     post.link = '';
+                    post.title = '';
                                                
                 }).$promise.catch(function(response) {
                     //this will be fired upon error

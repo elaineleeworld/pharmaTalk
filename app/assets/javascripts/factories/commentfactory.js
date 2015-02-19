@@ -29,8 +29,9 @@
            comment.body = '';
            comment.user_id = '';
            comment.created_at = '';
+           comment.post_id = '';
 
-           $("#comment-link").modal("toggle");
+           // $("#comment-link").modal("toggle");
 
         }).$promise.catch(function(response) {
           if(response.status !== 201) {

@@ -20,9 +20,18 @@
 		self.id = ipCookie('id');
 		self.comment = new CommentsFactory();
 		self.searchTweets  = searchTweets;
-	
+		self.addComment = addComment;
 
-	function searchTweets(){
+
+		function addComment(content, postId){
+			$http
+			  .post('/api/comments', {body: content, post_id: postId, user_id: self.id})
+			  .success(function(response){
+			  	console.log(response);
+			  })
+		}
+
+		function searchTweets(){
           // var searchWord = 'gilead'
 	      var searchWord = encodeURIComponent(self.searchWord);
 	      var url = '/api/tweets?q=';

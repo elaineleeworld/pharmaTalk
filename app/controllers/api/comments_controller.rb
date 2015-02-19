@@ -14,11 +14,16 @@ module API
     end
 
     def create
-      comment = Comment.new(comment_params)
+      post = Post.find(params[:post_id])
+      comment = post.comments.new(comment_params)
+      # comment = Comment.new(comment_params)
 
       # Get the default user_id
-      user = User.find(params[:user_id])      
-      comment.user = user         
+      user = User.find(params[:user_id])   
+      comment.user = user     
+      # Get the post_id this comment is created for   
+      # post = Post.find(params[:post_id])  
+      # comment.post = post_id  
 
       # Save method
       if comment.save

@@ -11,19 +11,41 @@
       <br>
 <!-- show all posts  -->
       <div id="box" class="col-md-6 text-center well" ng-repeat="post in main.Post.posts"> 
-      <p>{{ post.title }}</p>
-      <a href="{{ post.link }}">Click here to read the article</a>
+          <p>{{ post.title }}</p>
+          <a href="{{ post.link }}">Click here to read the article</a>
       
 
 <!-- show when post created and by whom -->
-      <h6> submitted at {{ post.dateTimeFormat }} by {{ post.poster}}</h6>
-     
-      <button class="btn"><a data-toggle="modal" data-target="#comment-body">Read Comments</a></button>
+          <h6> submitted at {{ post.dateTimeFormat }} by {{ post.poster}}</h6>
+      <!-- <a href="">View all comments</a> -->
 
-      <button class="btn"><a data-toggle="modal" data-target="#comment-body">Add comment</a></button>
-     
+<!-- button to display all comments in a modal for that particular post -->
+  <!--  <div class="comments" ng-repeat="comment in post.comments">   -->
+            
 
-      </div>
+<!-- remove comment -->
+     <!--  <div class="remove grey smaller" ng-show="post.poster.id === main.id" ng-click="main.Comment.destroy(comment.id, $index, $parent.$index)">
+            <span class="glyphicon glyphicon glyphicon-remove-circle"></span>
+      </div> -->
+
+<!-- comment created by and at -->
+         <!--  <a href="/#/profile/{{comment.commenter.id}}">{{comment.commenter.name}}</a><span class="time">{{comment.created_at}}</span> -->
+
+<!-- comment body -->
+          <!-- <p>{{comment.body}}</p>
+          
+    </div>  -->  
+<!-- comment box -->
+        <div class="comment-box">
+
+            <form name="commentBox" ng-submit="main.addComment(post.comment, post.id)">
+              <textarea ng-model="post.comment" placeholder="Comment.." class="form-control"></textarea>
+              <input type="submit" value="Comment" class="pull-right submit-input" />
+            </form>
+        </div>
+  </div>
+
+
 
   <!-- Stock WatchList Widget -->
         <h4>Market Watch</h4>
@@ -133,19 +155,19 @@
                   <textarea ng-model="main.Post.post.title" class="form-control" placeholder="Your title topic here"></textarea>
                   <br>
                   <input type="text" ng-model="main.Post.post.link" class="form-control" autofocus="true" placeholder="Enter related article link here .."  />
-                  <br />          
+                  <br />    
+                  <div ng-show="main.Post.postError === true" class="text-warning row text-center">Please enter a link to a relevant article!</div>
+
+                 <!--  <div class="modal-footer"> -->
+                  <div class="modal-footer">
+                  <input type="submit" id="submit" class="btn btn-success" value="Post!"/>
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  </div>  
+   
+       
+                </div>   
+            </form>   
                   
-
-                  <div ng-show="main.Post.postError === true" class="text-warning row text-center">Make sure link is in https:// format</div>
-
-              </div>
-              
-              <div class="modal-footer">
-                  <input type="submit" id="submit" class="btn btn-success" value="Submit" />
-                </div>    
-            </form>
-
-
 <!-- JavaScript function to activate the Post Link modal to focus on the input text -->
           <script type="text/javascript">
             // When doc loads
@@ -154,26 +176,13 @@
                 // jQuery for modal
                 $("#post-link").on('shown.bs.modal', function(){
                   $(this).find("[autofocus]:first").focus();
+                  
                 });
-
 
               });
           </script>
 
-          <!-- Javascript to activate the comment modal -->
- <script type="text/javascript">
-            // When doc loads
-              $(function(){
-
-                // jQuery for modal
-                $("#comment-body").on('shown.bs.modal', function(){
-                  $(this).find("[autofocus]:first").focus();
-
-                });
-
-
-              });
-          </script>
+        
 
 
 
